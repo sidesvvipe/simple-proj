@@ -63,7 +63,6 @@
   <con:jmsConnectionContainer/>
   <con:oAuth2ProfileContainer/>
   <con:oAuth1ProfileContainer/>
-  <con:reporting/>
   <con:beforeRunScript>virtRunner.run("ServiceSoapBinding MockService")
         virtRunner.run("RESTMockService")</con:beforeRunScript>
   <con:eventHandlers type="RequestFilter.filterRequest" name="RequestFilter.filterRequest">

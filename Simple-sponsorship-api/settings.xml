@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<con:interface xsi:type="con:RestService" id="b24da3fa-144b-4380-ba31-94b50f42eeb6" name="Simple sponsorship api" type="rest_ex" wadlVersion="https://swagger.io/openapiv3/specification" definitionUrl="file:/C:/Users/Vladimir%20Right/Downloads/petstore.yaml" xmlns:con="http://eviware.com/soapui/config" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<con:interface xsi:type="con:RestService" id="b24da3fa-144b-4380-ba31-94b50f42eeb6" name="Simple sponsorship api" type="rest_ex" wadlVersion="https://swagger.io/openapiv3/specification" definitionUrl="file:/C:/Users/Vladimir%20Right/Downloads/petstore.yaml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con="http://eviware.com/soapui/config">
   <con:description xsi:nil="true"/>
   <con:settings>
     <con:setting id="b24da3fa-144b-4380-ba31-94b50f42eeb6fileName">Simple-sponsorship-api</con:setting>
