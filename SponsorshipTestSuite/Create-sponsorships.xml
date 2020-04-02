@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testCase id="5bca3490-9780-458b-9bc5-ab1617ac9051" discardOkResults="false" failOnError="false" failTestCaseOnErrors="true" keepSession="false" name="Create sponsorships" searchProperties="true" timeout="0" wsrmEnabled="false" wsrmVersion="1.0" wsrmAckTo="" amfAuthorisation="false" amfEndpoint="" amfLogin="" amfPassword="" zephyrTestName="" zephyrTestId="" xmlns:con="http://eviware.com/soapui/config">
+  <con:settings>
+    <con:setting id="5bca3490-9780-458b-9bc5-ab1617ac9051fileName">Create-sponsorships</con:setting>
+  </con:settings>
+  <con:savedRecentRuns>1</con:savedRecentRuns>
+  <con:testStep type="datasource" name="Copy of PlayerDataSource" id="948be7f5-9cce-42c5-96e6-6a6bea66b54f">
+    <con:settings/>
+    <con:config xsi:type="con:DataSourceStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <con:dataSource type="Excel">
+        <con:configuration>
+          <file>C:/Users/Vladimir Right/Documents/SponsorshipsREADYapi - Copy.xlsx</file>
+          <worksheet>Players</worksheet>
+          <cell>A2</cell>
+          <ignoreEmpty>true</ignoreEmpty>
+          <evaluateFormulas>false</evaluateFormulas>
+        </con:configuration>
+      </con:dataSource>
+      <con:property>ID</con:property>
+      <con:property>nickname</con:property>
+      <con:property>balance</con:property>
+      <con:property>canLend</con:property>
+      <con:property>canBorrow</con:property>
+      <con:startRow>0</con:startRow>
+      <con:endRow/>
+      <con:recordsPerIteration>1</con:recordsPerIteration>
+      <con:completeLastOperation>false</con:completeLastOperation>
+      <con:trimValues>false</con:trimValues>
+      <con:entitizeValues>false</con:entitizeValues>
+      <con:restartOnRun>false</con:restartOnRun>
+      <con:expandProperties>true</con:expandProperties>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="datasource" name="SponsorshipDataSource" id="1f4eb493-6afe-4e73-a2a0-4c70dedf6c93">
+    <con:settings/>
+    <con:config xsi:type="con:DataSourceStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <con:dataSource type="Excel">
+        <con:configuration>
+          <file>C:/Users/Vladimir Right/Documents/SponsorshipsREADYapi - Copy.xlsx</file>
+          <worksheet>Sponsorships</worksheet>
+          <cell>A2</cell>
+          <ignoreEmpty>true</ignoreEmpty>
+          <evaluateFormulas>false</evaluateFormulas>
+        </con:configuration>
+      </con:dataSource>
+      <con:restartShared>true</con:restartShared>
+      <con:preload>false</con:preload>
+      <con:property>ID</con:property>
+      <con:property>creditor_id</con:property>
+      <con:property>recepient_id</con:property>
+      <con:property>amount</con:property>
+      <con:property>isPaidOff</con:property>
+      <con:property>expectedCode</con:property>
+      <con:property>reason</con:property>
+      <con:startRow>0</con:startRow>
+      <con:endRow/>
+      <con:recordsPerIteration>1</con:recordsPerIteration>
+      <con:completeLastOperation>false</con:completeLastOperation>
+      <con:trimValues>false</con:trimValues>
+      <con:entitizeValues>false</con:entitizeValues>
+      <con:restartOnRun>false</con:restartOnRun>
+      <con:expandProperties>true</con:expandProperties>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="restrequest" name="checkCreditorBalanceBeforeSponsorship" id="324fbf63-4c26-49b0-be63-8dc32f7f72bd">
+    <con:settings/>
+    <con:config service="Simple sponsorship api" resourcePath="/players" methodName="getPlayers" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <con:restRequest name="checkCreditorBalanceBeforeSponsorship" id="36ac1de3-e856-46a2-9693-ce31db3a156e" mediaType="application/json">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+        </con:settings>
+        <con:endpoint>https://lively-wildflower-6281.getsandbox.com/</con:endpoint>
+        <con:request/>
+        <con:originalUri>https://lively-wildflower-6281.getsandbox.com/players</con:originalUri>
+        <con:assertion type="Valid HTTP Status Codes" id="850dc655-99f0-43e7-a4b4-c4907374e0e1" name="Valid HTTP Status Codes">
+          <con:settings/>
+          <con:configuration>
+            <codes>200</codes>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="MessageContentAssertion" id="5f27c06a-ba77-44bf-94f3-42ef47836084" name="Message Content Assertion">
+          <con:configuration xsi:type="con:MessageContentAssertion">
+            <con:originalMessage><![CDATA[<Response xmlns="https://lively-wildflower-6281.getsandbox.com/players">
+   <id>5</id>
+   <nickname>richGuy</nickname>
+   <balance>997</balance>
+   <canLend>true</canLend>
+   <canBorrow>true</canBorrow>
+</Response>]]></con:originalMessage>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters>
+          <con:entry key="id" value="${SponsorshipDataSource#creditor_id}"/>
+        </con:parameters>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="restrequest" name="addSponsorship" id="d9378824-6a17-45e8-9730-3ee117312038">
+    <con:settings/>
+    <con:config service="Simple sponsorship api" resourcePath="/sponsorships" methodName="addSponsorship" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <con:restRequest name="addSponsorship" id="4f3becb2-6841-4a58-b237-ccbd42c8d901" mediaType="application/json" postQueryString="false">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+        </con:settings>
+        <con:endpoint>https://lively-wildflower-6281.getsandbox.com/</con:endpoint>
+        <con:request>{
+  "creditorId": ${creditorId},
+  "recepientId": ${recepientId},
+  "amount": ${amount}
+}</con:request>
+        <con:originalUri>https://lively-wildflower-6281.getsandbox.com/sponsorships</con:originalUri>
+        <con:assertion type="Valid HTTP Status Codes" id="3cfd44a9-a11d-4936-8b86-9577b4ad4533" name="Valid HTTP Status Codes">
+          <con:settings/>
+          <con:configuration>
+            <codes>200, 201, 400</codes>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="JsonPath Match" id="7a0c340a-1266-4e1c-ab3b-7e4497999bdb" name="Match content of [message]">
+          <con:configuration>
+            <path>$['error']['message']</path>
+            <content>${SponsorshipDataSource#reason}</content>
+            <allowWildcards>false</allowWildcards>
+            <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+            <ignoreComments>false</ignoreComments>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters>
+          <con:entry key="recepientId" value="${SponsorshipDataSource#recepient_id}"/>
+          <con:entry key="amount" value="${SponsorshipDataSource#amount}"/>
+          <con:entry key="creditorId" value="${SponsorshipDataSource#creditor_id}"/>
+        </con:parameters>
+        <con:parameterOrder>
+          <con:entry>creditorId</con:entry>
+          <con:entry>recepientId</con:entry>
+          <con:entry>amount</con:entry>
+        </con:parameterOrder>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="restrequest" name="checkCreditorBalanceAfterSponsorship" id="581a3517-a608-44d8-aa6f-88ccc5b18453">
+    <con:settings/>
+    <con:config service="Simple sponsorship api" resourcePath="/players" methodName="getPlayers" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <con:restRequest name="checkCreditorBalanceAfterSponsorship" id="36ac1de3-e856-46a2-9693-ce31db3a156e" mediaType="application/json">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+        </con:settings>
+        <con:endpoint>https://lively-wildflower-6281.getsandbox.com/</con:endpoint>
+        <con:request/>
+        <con:originalUri>https://lively-wildflower-6281.getsandbox.com/players</con:originalUri>
+        <con:assertion type="Valid HTTP Status Codes" id="850dc655-99f0-43e7-a4b4-c4907374e0e1" name="Valid HTTP Status Codes">
+          <con:settings/>
+          <con:configuration>
+            <codes>200</codes>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="MessageContentAssertion" id="5f27c06a-ba77-44bf-94f3-42ef47836084" name="Message Content Assertion">
+          <con:configuration xsi:type="con:MessageContentAssertion">
+            <con:originalMessage><![CDATA[<Response xmlns="https://lively-wildflower-6281.getsandbox.com/players">
+   <id>5</id>
+   <nickname>richGuy</nickname>
+   <balance>997</balance>
+   <canLend>true</canLend>
+   <canBorrow>true</canBorrow>
+</Response>]]></con:originalMessage>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters>
+          <con:entry key="id" value="${SponsorshipDataSource#creditor_id}"/>
+        </con:parameters>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="groovy" name="ValidateBalanceChange" id="62e143d0-6f88-4f44-a2a6-85a104181a4c">
+    <con:settings/>
+    <con:config>
+      <script>import static com.jayway.jsonpath.JsonPath.parse
+import static com.jayway.jsonpath.JsonPath.hasJsonPath
+
+def response = context.expand( '${addSponsorship#Response}' )
+def id;
+try{
+	id = parse(response).read('$.id')
+} catch (Exception ex) {}
+
+if (id!=null) {
+	log.info "sponsorship "+id
+
+	def balanceBefore = parse(context.expand( '${checkCreditorBalanceBeforeSponsorship#Response}' )).read('$.balance');
+	def balanceAfter = parse(context.expand( '${checkCreditorBalanceAfterSponsorship#Response}' )).read('$.balance');
+	def amount = (parse(response).read('$.amount'));
+	assert balanceBefore == balanceAfter+amount;
+}</script>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="datasourceloop" name="DataSource Loop" id="b998a726-f7e5-4427-8809-92b908f6f52a">
+    <con:settings/>
+    <con:config>
+      <dataSourceStep>SponsorshipDataSource</dataSourceStep>
+      <targetStep>checkCreditorBalanceBeforeSponsorship</targetStep>
+      <discardResults>false</discardResults>
+    </con:config>
+  </con:testStep>
+  <con:properties/>
+  <con:reportParameters/>
+  <con:breakPoints>
+    <con:testStepId>4c87f00e-e3b7-4441-951d-5ed11621644c</con:testStepId>
+    <con:status>NONE</con:status>
+    <con:properties/>
+  </con:breakPoints>
+  <con:breakPoints>
+    <con:testStepId>505a2298-7da8-4207-b815-a08d47c1615b</con:testStepId>
+    <con:status>NONE</con:status>
+    <con:properties/>
+  </con:breakPoints>
+  <con:breakPoints>
+    <con:testStepId>c34eea79-a922-4957-8c54-4aec178578e4</con:testStepId>
+    <con:status>NONE</con:status>
+    <con:properties/>
+  </con:breakPoints>
+  <con:breakPoints>
+    <con:testStepId>948be7f5-9cce-42c5-96e6-6a6bea66b54f</con:testStepId>
+    <con:status>NONE</con:status>
+    <con:properties/>
+  </con:breakPoints>
+  <con:breakPoints>
+    <con:testStepId>62e143d0-6f88-4f44-a2a6-85a104181a4c</con:testStepId>
+    <con:status>NONE</con:status>
+    <con:properties/>
+  </con:breakPoints>
+  <con:breakPoints>
+    <con:testStepId>324fbf63-4c26-49b0-be63-8dc32f7f72bd</con:testStepId>
+    <con:status>NONE</con:status>
+    <con:properties/>
+  </con:breakPoints>
+  <con:breakPoints>
+    <con:testStepId>581a3517-a608-44d8-aa6f-88ccc5b18453</con:testStepId>
+    <con:status>NONE</con:status>
+    <con:properties/>
+  </con:breakPoints>
+  <con:breakPoints>
+    <con:testStepId>1f4eb493-6afe-4e73-a2a0-4c70dedf6c93</con:testStepId>
+    <con:status>NONE</con:status>
+    <con:properties/>
+  </con:breakPoints>
+  <con:breakPoints>
+    <con:testStepId>d9378824-6a17-45e8-9730-3ee117312038</con:testStepId>
+    <con:status>NONE</con:status>
+    <con:properties/>
+  </con:breakPoints>
+  <con:breakPoints>
+    <con:testStepId>b998a726-f7e5-4427-8809-92b908f6f52a</con:testStepId>
+    <con:status>NONE</con:status>
+    <con:properties/>
+  </con:breakPoints>
+</con:testCase>

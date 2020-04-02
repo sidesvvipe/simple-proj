@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testCase id="4300d04e-ac35-464d-8806-b6a8e7781799" discardOkResults="false" failOnError="true" failTestCaseOnErrors="true" keepSession="false" name="Delete players" searchProperties="true" timeout="0" xmlns:con="http://eviware.com/soapui/config">
+  <con:settings>
+    <con:setting id="4300d04e-ac35-464d-8806-b6a8e7781799fileName">Delete-players</con:setting>
+  </con:settings>
+  <con:savedRecentRuns>1</con:savedRecentRuns>
+  <con:testStep type="restrequest" name="REST Request" id="c31bce88-74a9-4789-9979-06edd00b34d1">
+    <con:settings/>
+    <con:config service="Simple sponsorship api" resourcePath="/players" methodName="removePlayers" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <con:restRequest name="REST Request" id="621cdb88-5b0f-4399-a40b-9ea3dd11bd42" mediaType="application/json" postQueryString="false">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+        </con:settings>
+        <con:endpoint>https://lively-wildflower-6281.getsandbox.com/</con:endpoint>
+        <con:request/>
+        <con:originalUri>https://lively-wildflower-6281.getsandbox.com/players</con:originalUri>
+        <con:assertion type="Valid HTTP Status Codes" id="81753c01-bdb3-45a1-9f5a-5a478e960395" name="Valid HTTP Status Codes">
+          <con:settings/>
+          <con:configuration>
+            <codes>200</codes>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters/>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:properties/>
+  <con:reportParameters/>
+</con:testCase>

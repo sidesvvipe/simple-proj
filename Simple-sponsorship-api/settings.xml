@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:interface xsi:type="con:RestService" id="b24da3fa-144b-4380-ba31-94b50f42eeb6" name="Simple sponsorship api" type="rest_ex" wadlVersion="https://swagger.io/openapiv3/specification" definitionUrl="file:/C:/Users/Vladimir%20Right/Downloads/petstore.yaml" xmlns:con="http://eviware.com/soapui/config" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <con:description xsi:nil="true"/>
+  <con:settings>
+    <con:setting id="b24da3fa-144b-4380-ba31-94b50f42eeb6fileName">Simple-sponsorship-api</con:setting>
+  </con:settings>
+  <con:definitionCache type="TEXT" rootPart="file:/C:/Users/Vladimir%20Right/Downloads/petstore.yaml">
+    <con:part>
+      <con:url>file:/C:/Users/Vladimir%20Right/Downloads/petstore.yaml</con:url>
+      <con:content>openapi: "3.0.0"
+info:
+  version: 1.0.0
+  title: Simple sponsorship api
+  license:
+    name: MIT
+servers:
+  - url: https://lively-wildflower-6281.getsandbox.com/
+paths:
+  /players:
+    get:
+      summary: List all players
+      operationId: getPlayers
+      tags:
+        - players
+      parameters:
+        - name: id
+          in: query
+          description: id of specific player
+          required: false
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Array of players
+          # headers:
+            # x-next:
+              # description: A link to the next page of responses
+              # schema:
+                # type: string
+          content:
+            application/json:    
+              schema:
+                $ref: "#/components/schemas/Players"
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    post:
+      summary: Add new player
+      operationId: addPlayer
+      tags:
+        - players
+      responses:
+        '201':
+          description: Null response
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /pets/{petId}:
+    get:
+      summary: Info for a specific pet
+      operationId: showPetById
+      tags:
+        - pets
+      parameters:
+        - name: petId
+          in: path
+          required: true
+          description: The id of the pet to retrieve
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Player"
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+components:
+  schemas:
+    Player:
+      type: object
+      required:
+        - nickname
+      properties:
+        id:
+          type: integer
+          format: int64
+        nickname:
+          type: string
+        balance:
+          type: number
+          format: double
+        canLend:
+           type: boolean
+        canBorrow:
+           type: boolean
+    Players:
+      type: array
+      items:
+        $ref: "#/components/schemas/Player"
+    Error:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string</con:content>
+      <con:type>https://swagger.io/openapiv3/specification</con:type>
+    </con:part>
+  </con:definitionCache>
+  <con:endpoints>
+    <con:endpoint>https://lively-wildflower-6281.getsandbox.com/</con:endpoint>
+  </con:endpoints>
+</con:interface>

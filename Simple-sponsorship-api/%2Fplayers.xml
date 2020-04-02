@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:resource name="/players" path="/players" id="4040c1b0-057f-4ced-9783-67f3e13a869c" xmlns:con="http://eviware.com/soapui/config">
+  <con:settings>
+    <con:setting id="4040c1b0-057f-4ced-9783-67f3e13a869cfileName">%2Fplayers</con:setting>
+  </con:settings>
+  <con:parameters/>
+  <con:method name="getPlayers" id="16d151b1-6d95-4c7e-a0f4-f0f50d9b207c" method="GET">
+    <con:description>List all players</con:description>
+    <con:settings/>
+    <con:parameters>
+      <con:parameter>
+        <con:name>id</con:name>
+        <con:value/>
+        <con:style>QUERY</con:style>
+        <con:default/>
+        <con:description>id of specific player</con:description>
+      </con:parameter>
+    </con:parameters>
+    <con:representation type="RESPONSE">
+      <con:mediaType>application/json</con:mediaType>
+      <con:status>200</con:status>
+      <con:params/>
+      <con:description>Array of players</con:description>
+      <con:sampleContent>[ {
+  "id" : 0,
+  "nickname" : "string",
+  "balance" : 1.100000023841858,
+  "canLend" : true,
+  "canBorrow" : true
+} ]</con:sampleContent>
+    </con:representation>
+    <con:request name="Request 1" id="36ac1de3-e856-46a2-9693-ce31db3a156e" mediaType="application/json">
+      <con:settings>
+        <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+      </con:settings>
+      <con:endpoint>https://lively-wildflower-6281.getsandbox.com/</con:endpoint>
+      <con:request/>
+      <con:originalUri>https://lively-wildflower-6281.getsandbox.com/players</con:originalUri>
+      <con:credentials>
+        <con:authType>No Authorization</con:authType>
+      </con:credentials>
+      <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+      <con:parameters>
+        <con:entry key="id" value="5"/>
+      </con:parameters>
+    </con:request>
+  </con:method>
+  <con:method name="addPlayer" id="4bb2c521-f674-476d-9e1f-cf7d3f7e39eb" method="POST">
+    <con:description>Add new player</con:description>
+    <con:settings/>
+    <con:parameters>
+      <con:parameter required="true">
+        <con:name>nickname</con:name>
+        <con:value/>
+        <con:style>QUERY</con:style>
+        <con:default/>
+      </con:parameter>
+      <con:parameter>
+        <con:name>balance</con:name>
+        <con:value/>
+        <con:style>QUERY</con:style>
+        <con:type xmlns:xs="http://www.w3.org/2001/XMLSchema">xs:double</con:type>
+        <con:default/>
+      </con:parameter>
+      <con:parameter>
+        <con:name>canLend</con:name>
+        <con:value/>
+        <con:style>QUERY</con:style>
+        <con:type xmlns:xs="http://www.w3.org/2001/XMLSchema">xs:boolean</con:type>
+        <con:default/>
+      </con:parameter>
+      <con:parameter>
+        <con:name>canBorrow</con:name>
+        <con:value/>
+        <con:style>QUERY</con:style>
+        <con:type xmlns:xs="http://www.w3.org/2001/XMLSchema">xs:boolean</con:type>
+        <con:default/>
+      </con:parameter>
+    </con:parameters>
+    <con:request name="Request 1" id="93cf349c-9aff-483e-b931-4d1a2e81742b" mediaType="application/x-www-form-urlencoded" postQueryString="true">
+      <con:settings>
+        <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+      </con:settings>
+      <con:endpoint>https://lively-wildflower-6281.getsandbox.com/</con:endpoint>
+      <con:request/>
+      <con:originalUri>https://lively-wildflower-6281.getsandbox.com/players</con:originalUri>
+      <con:credentials>
+        <con:authType>No Authorization</con:authType>
+      </con:credentials>
+      <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+      <con:parameters>
+        <con:entry key="canBorrow" value="true"/>
+        <con:entry key="balance" value="0"/>
+        <con:entry key="nickname" value="canBorrower"/>
+        <con:entry key="canLend" value="true"/>
+      </con:parameters>
+      <con:parameterOrder>
+        <con:entry>nickname</con:entry>
+        <con:entry>balance</con:entry>
+        <con:entry>canLend</con:entry>
+        <con:entry>canBorrow</con:entry>
+      </con:parameterOrder>
+    </con:request>
+  </con:method>
+  <con:method name="removePlayers" id="290c4399-a3b0-4691-8798-db18d82a804e" method="DELETE">
+    <con:settings/>
+    <con:parameters/>
+    <con:request name="Request 1" id="621cdb88-5b0f-4399-a40b-9ea3dd11bd42" mediaType="application/json" postQueryString="false">
+      <con:settings/>
+      <con:endpoint>https://lively-wildflower-6281.getsandbox.com/</con:endpoint>
+      <con:request/>
+      <con:credentials>
+        <con:authType>No Authorization</con:authType>
+      </con:credentials>
+      <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+      <con:parameters/>
+    </con:request>
+  </con:method>
+</con:resource>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:resource name="/sponsorships" path="/sponsorships" id="b3943286-e31d-4341-85c9-9dd9b2b360b2" xmlns:con="http://eviware.com/soapui/config">
+  <con:settings>
+    <con:setting id="b3943286-e31d-4341-85c9-9dd9b2b360b2fileName">%2Fsponsorships</con:setting>
+  </con:settings>
+  <con:parameters/>
+  <con:method name="addSponsorship" id="4f8c8c48-edd2-461f-b7f8-b5c8666f963b" method="POST">
+    <con:settings/>
+    <con:parameters>
+      <con:parameter required="true">
+        <con:name>creditorId</con:name>
+        <con:value/>
+        <con:style>QUERY</con:style>
+        <con:type xmlns:xs="http://www.w3.org/2001/XMLSchema">xs:int</con:type>
+        <con:default/>
+      </con:parameter>
+      <con:parameter required="true">
+        <con:name>recepientId</con:name>
+        <con:value/>
+        <con:style>QUERY</con:style>
+        <con:type xmlns:xs="http://www.w3.org/2001/XMLSchema">xs:int</con:type>
+        <con:default/>
+      </con:parameter>
+      <con:parameter required="true">
+        <con:name>amount</con:name>
+        <con:value/>
+        <con:style>QUERY</con:style>
+        <con:type xmlns:xs="http://www.w3.org/2001/XMLSchema">xs:double</con:type>
+        <con:default/>
+      </con:parameter>
+    </con:parameters>
+    <con:representation type="RESPONSE">
+      <con:mediaType>application/json</con:mediaType>
+      <con:status>201</con:status>
+      <con:params/>
+    </con:representation>
+    <con:request name="Request 1" id="4f3becb2-6841-4a58-b237-ccbd42c8d901" mediaType="application/json" postQueryString="false">
+      <con:settings>
+        <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+      </con:settings>
+      <con:endpoint>https://lively-wildflower-6281.getsandbox.com/</con:endpoint>
+      <con:request>{
+  "creditorId": 5,
+  "recepientId": 7,
+  "amount": 100
+}</con:request>
+      <con:originalUri>https://lively-wildflower-6281.getsandbox.com/sponsorships</con:originalUri>
+      <con:credentials>
+        <con:authType>No Authorization</con:authType>
+      </con:credentials>
+      <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+      <con:parameters>
+        <con:entry key="recepientId" value="1"/>
+        <con:entry key="amount" value="1000"/>
+        <con:entry key="creditorId" value="0"/>
+      </con:parameters>
+      <con:parameterOrder>
+        <con:entry>creditorId</con:entry>
+        <con:entry>recepientId</con:entry>
+        <con:entry>amount</con:entry>
+      </con:parameterOrder>
+    </con:request>
+  </con:method>
+</con:resource>

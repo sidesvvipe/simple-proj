@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testCase id="90f160dd-c053-4f1a-b145-e1525eaecdf5" discardOkResults="false" failOnError="true" failTestCaseOnErrors="true" keepSession="false" name="Create players" searchProperties="true" timeout="0" xmlns:con="http://eviware.com/soapui/config">
+  <con:settings>
+    <con:setting id="90f160dd-c053-4f1a-b145-e1525eaecdf5fileName">Create-players</con:setting>
+  </con:settings>
+  <con:savedRecentRuns>1</con:savedRecentRuns>
+  <con:testStep type="datasource" name="PlayerDataSource" id="4c87f00e-e3b7-4441-951d-5ed11621644c">
+    <con:settings/>
+    <con:config xsi:type="con:DataSourceStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <con:dataSource type="Excel">
+        <con:configuration>
+          <file>C:/Users/Vladimir Right/Documents/SponsorshipsREADYapi - Copy.xlsx</file>
+          <worksheet>Players</worksheet>
+          <cell>A2</cell>
+          <ignoreEmpty>true</ignoreEmpty>
+          <evaluateFormulas>false</evaluateFormulas>
+        </con:configuration>
+      </con:dataSource>
+      <con:property>ID</con:property>
+      <con:property>nickname</con:property>
+      <con:property>balance</con:property>
+      <con:property>canLend</con:property>
+      <con:property>canBorrow</con:property>
+      <con:startRow>0</con:startRow>
+      <con:endRow/>
+      <con:recordsPerIteration>1</con:recordsPerIteration>
+      <con:completeLastOperation>false</con:completeLastOperation>
+      <con:trimValues>false</con:trimValues>
+      <con:entitizeValues>false</con:entitizeValues>
+      <con:restartOnRun>false</con:restartOnRun>
+      <con:expandProperties>true</con:expandProperties>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="restrequest" name="addPlayer" id="3abedf26-4af4-48f0-8e90-10408866282b">
+    <con:settings/>
+    <con:config service="Simple sponsorship api" resourcePath="/players" methodName="addPlayer" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <con:restRequest name="addPlayer" id="93cf349c-9aff-483e-b931-4d1a2e81742b" mediaType="application/json" postQueryString="false">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+        </con:settings>
+        <con:endpoint>https://lively-wildflower-6281.getsandbox.com/</con:endpoint>
+        <con:request>{\r
+   "nickname" : "${nickname}"\r,
+   "balance" : ${balance},
+   "canLend" : ${canLend},
+   "canBorrow" : ${canBorrow}
+}</con:request>
+        <con:originalUri>https://lively-wildflower-6281.getsandbox.com/players</con:originalUri>
+        <con:assertion type="Valid HTTP Status Codes" id="fa6ce231-965d-412f-a01e-cf7d53d8118b" name="Valid HTTP Status Codes">
+          <con:settings/>
+          <con:configuration>
+            <codes>201</codes>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="JsonPath Existence Match" id="050ccc38-e024-4e80-936f-9c9cdca9d603" name="Check for existence of [id]">
+          <con:configuration>
+            <path>$['id']</path>
+            <content>true</content>
+            <allowWildcards>false</allowWildcards>
+            <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+            <ignoreComments>false</ignoreComments>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters>
+          <con:entry key="canBorrow" value="${PlayerDataSource#canBorrow}"/>
+          <con:entry key="balance" value="${PlayerDataSource#balance}"/>
+          <con:entry key="nickname" value="${PlayerDataSource#nickname}"/>
+          <con:entry key="canLend" value="${PlayerDataSource#canLend}"/>
+        </con:parameters>
+        <con:parameterOrder>
+          <con:entry>nickname</con:entry>
+          <con:entry>balance</con:entry>
+          <con:entry>canLend</con:entry>
+          <con:entry>canBorrow</con:entry>
+        </con:parameterOrder>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="datasink" name="StorePlayerIDs" id="505a2298-7da8-4207-b815-a08d47c1615b">
+    <con:settings/>
+    <con:config xsi:type="con:DataSinkStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <con:dataSink type="Excel">
+        <con:configuration>
+          <file>C:/Users/Vladimir Right/Documents/SponsorshipsREADYapi - Copy.xlsx</file>
+          <outfile>C:/Users/Vladimir Right/Documents/SponsorshipsREADYapi - Copy.xlsx</outfile>
+          <worksheet>Players</worksheet>
+          <cell>A2</cell>
+          <evaluateFormulas>true</evaluateFormulas>
+          <append>false</append>
+        </con:configuration>
+      </con:dataSink>
+      <con:shared>false</con:shared>
+      <con:properties>
+        <con:property>
+          <con:name>ID</con:name>
+          <con:value>${addPlayer#Response#$['id']}</con:value>
+        </con:property>
+      </con:properties>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="datasourceloop" name="Copy of DataSource Loop" id="55e13f13-84ae-4e1d-be91-0e3d47248292">
+    <con:settings/>
+    <con:config>
+      <dataSourceStep>PlayerDataSource</dataSourceStep>
+      <targetStep>Add player</targetStep>
+      <discardResults>false</discardResults>
+    </con:config>
+  </con:testStep>
+  <con:properties/>
+  <con:reportParameters/>
+  <con:breakPoints>
+    <con:testStepId>4c87f00e-e3b7-4441-951d-5ed11621644c</con:testStepId>
+    <con:status>NONE</con:status>
+    <con:properties/>
+  </con:breakPoints>
+  <con:breakPoints>
+    <con:testStepId>505a2298-7da8-4207-b815-a08d47c1615b</con:testStepId>
+    <con:status>NONE</con:status>
+    <con:properties/>
+  </con:breakPoints>
+</con:testCase>
