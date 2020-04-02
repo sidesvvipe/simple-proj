@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<con:interface xsi:type="con:RestService" id="b24da3fa-144b-4380-ba31-94b50f42eeb6" name="Simple sponsorship api" type="rest_ex" wadlVersion="https://swagger.io/openapiv3/specification" definitionUrl="file:/C:/Users/Vladimir%20Right/Downloads/petstore.yaml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con="http://eviware.com/soapui/config">
+<con:interface xsi:type="con:RestService" id="b24da3fa-144b-4380-ba31-94b50f42eeb6" name="Simple sponsorship api" type="rest_ex" wadlVersion="https://swagger.io/openapiv3/specification" definitionUrl="file:/C:/Users/Vladimir%20Right/Downloads/petstore.yaml" basePath="" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con="http://eviware.com/soapui/config">
   <con:description xsi:nil="true"/>
   <con:settings>
     <con:setting id="b24da3fa-144b-4380-ba31-94b50f42eeb6fileName">Simple-sponsorship-api</con:setting>
   </con:settings>
-  <con:definitionCache type="TEXT" rootPart="file:/C:/Users/Vladimir%20Right/Downloads/petstore.yaml">
+  <con:definitionCache type="TEXT" rootPart="file:/C:/Users/Vladimir%20Right/Downloads/sponsorship-api.yaml">
     <con:part>
-      <con:url>file:/C:/Users/Vladimir%20Right/Downloads/petstore.yaml</con:url>
+      <con:url>file:/C:/Users/Vladimir%20Right/Downloads/sponsorship-api.yaml</con:url>
       <con:content>openapi: "3.0.0"
 info:
   version: 1.0.0
@@ -128,4 +128,9 @@ components:
   <con:endpoints>
     <con:endpoint>https://lively-wildflower-6281.getsandbox.com/</con:endpoint>
   </con:endpoints>
+  <con:environmentSpec>
+    <con:entry environmentId="24dae39e-582c-405d-8775-d9c9ccd0265a">
+      <con:authProfile>Inherit From Parent</con:authProfile>
+    </con:entry>
+  </con:environmentSpec>
 </con:interface>

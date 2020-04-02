@@ -78,6 +78,11 @@
           <con:entry>canLend</con:entry>
           <con:entry>canBorrow</con:entry>
         </con:parameterOrder>
+        <con:environmentSpec>
+          <con:entry environmentId="24dae39e-582c-405d-8775-d9c9ccd0265a">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+        </con:environmentSpec>
       </con:restRequest>
     </con:config>
   </con:testStep>
@@ -123,4 +128,9 @@
     <con:status>NONE</con:status>
     <con:properties/>
   </con:breakPoints>
+  <con:environmentSpec>
+    <con:entry environmentId="24dae39e-582c-405d-8775-d9c9ccd0265a">
+      <con:authProfile>Inherit From Parent</con:authProfile>
+    </con:entry>
+  </con:environmentSpec>
 </con:testCase>

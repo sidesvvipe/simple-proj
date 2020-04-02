@@ -44,7 +44,17 @@
       <con:parameters>
         <con:entry key="id" value="5"/>
       </con:parameters>
+      <con:environmentSpec>
+        <con:entry environmentId="24dae39e-582c-405d-8775-d9c9ccd0265a">
+          <con:authProfile>Inherit From Parent</con:authProfile>
+        </con:entry>
+      </con:environmentSpec>
     </con:request>
+    <con:environmentSpec>
+      <con:entry environmentId="24dae39e-582c-405d-8775-d9c9ccd0265a">
+        <con:authProfile>Inherit From Parent</con:authProfile>
+      </con:entry>
+    </con:environmentSpec>
   </con:method>
   <con:method name="addPlayer" id="4bb2c521-f674-476d-9e1f-cf7d3f7e39eb" method="POST">
     <con:description>Add new player</con:description>
@@ -102,7 +112,17 @@
         <con:entry>canLend</con:entry>
         <con:entry>canBorrow</con:entry>
       </con:parameterOrder>
+      <con:environmentSpec>
+        <con:entry environmentId="24dae39e-582c-405d-8775-d9c9ccd0265a">
+          <con:authProfile>Inherit From Parent</con:authProfile>
+        </con:entry>
+      </con:environmentSpec>
     </con:request>
+    <con:environmentSpec>
+      <con:entry environmentId="24dae39e-582c-405d-8775-d9c9ccd0265a">
+        <con:authProfile>Inherit From Parent</con:authProfile>
+      </con:entry>
+    </con:environmentSpec>
   </con:method>
   <con:method name="removePlayers" id="290c4399-a3b0-4691-8798-db18d82a804e" method="DELETE">
     <con:settings/>
@@ -117,6 +137,21 @@
       </con:credentials>
       <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
       <con:parameters/>
+      <con:environmentSpec>
+        <con:entry environmentId="24dae39e-582c-405d-8775-d9c9ccd0265a">
+          <con:authProfile>Inherit From Parent</con:authProfile>
+        </con:entry>
+      </con:environmentSpec>
     </con:request>
+    <con:environmentSpec>
+      <con:entry environmentId="24dae39e-582c-405d-8775-d9c9ccd0265a">
+        <con:authProfile>Inherit From Parent</con:authProfile>
+      </con:entry>
+    </con:environmentSpec>
   </con:method>
+  <con:environmentSpec>
+    <con:entry environmentId="24dae39e-582c-405d-8775-d9c9ccd0265a">
+      <con:authProfile>Inherit From Parent</con:authProfile>
+    </con:entry>
+  </con:environmentSpec>
 </con:resource>
