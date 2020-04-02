@@ -50,3 +50,5 @@ Using returned and stored by previous Case data generates Sponsorships from data
 
 #### 3. Delete players and sponsorships
 Nothing but a simple DELETE request. Removes all players and their sponsorships.
+
+![](resources/pass.PNG)
