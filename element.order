@@ -1,7 +1,4 @@
-ServiceSoapBinding
-http%3A%2F%2Flocalhost%3A8084
 Simple-sponsorship-api
 SponsorshipTestSuite
-Default-TestSuite
 ServiceSoapBinding-MockService
 RESTMockService
