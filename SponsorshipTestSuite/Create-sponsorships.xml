@@ -9,7 +9,7 @@
     <con:config xsi:type="con:DataSourceStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
       <con:dataSource type="Excel">
         <con:configuration>
-          <file>C:/Users/Vladimir Right/Documents/SponsorshipsREADYapi - Copy.xlsx</file>
+          <file>C:/Users/Vladimir Right/Documents/Default-SoapUI-Pro-Project-readyapi-project-clone/resources/SponsorshipsREADYapi.xlsx</file>
           <worksheet>Players</worksheet>
           <cell>A2</cell>
           <ignoreEmpty>true</ignoreEmpty>
@@ -36,7 +36,7 @@
     <con:config xsi:type="con:DataSourceStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
       <con:dataSource type="Excel">
         <con:configuration>
-          <file>C:/Users/Vladimir Right/Documents/SponsorshipsREADYapi - Copy.xlsx</file>
+          <file>C:/Users/Vladimir Right/Documents/Default-SoapUI-Pro-Project-readyapi-project-clone/resources/SponsorshipsREADYapi.xlsx</file>
           <worksheet>Sponsorships</worksheet>
           <cell>A2</cell>
           <ignoreEmpty>true</ignoreEmpty>

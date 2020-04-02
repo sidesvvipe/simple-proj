@@ -1,13 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<con:interface xsi:type="con:RestService" id="b24da3fa-144b-4380-ba31-94b50f42eeb6" name="Simple sponsorship api" type="rest_ex" wadlVersion="https://swagger.io/openapiv3/specification" definitionUrl="file:/C:/Users/Vladimir%20Right/Downloads/sponsorship-api.yaml" basePath="" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con="http://eviware.com/soapui/config">
-  <con:description xsi:nil="true"/>
-  <con:settings>
-    <con:setting id="b24da3fa-144b-4380-ba31-94b50f42eeb6fileName">Simple-sponsorship-api</con:setting>
-  </con:settings>
-  <con:definitionCache type="TEXT" rootPart="file:/C:/Users/Vladimir%20Right/Downloads/sponsorship-api.yaml">
-    <con:part>
-      <con:url>file:/C:/Users/Vladimir%20Right/Downloads/sponsorship-api.yaml</con:url>
-      <con:content>openapi: "3.0.0"
+openapi: "3.0.0"
 info:
   version: 1.0.0
   title: Simple sponsorship api
@@ -21,7 +12,7 @@ paths:
       summary: List all players
       operationId: getPlayers
       tags:
-        - players
+        - Players
       parameters:
         - name: id
           in: query
@@ -31,7 +22,7 @@ paths:
             type: integer
             format: int32
       responses:
-        '200':
+        '201':
           description: Array of players
           content:
             application/json:    
@@ -47,42 +38,47 @@ paths:
       summary: Add new player
       operationId: addPlayer
       tags:
-        - players
+        - Players
       responses:
         '201':
-          description: Null response
+          description: Registers new player in memory          
+          content:
+            application/json:    
+              schema:
+                $ref: "#/components/schemas/Players"
         default:
           description: unexpected error
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-  /pets/{petId}:
-    get:
-      summary: Info for a specific pet
-      operationId: showPetById
+    delete:
+      summary: Remove all players
+      operationId: removePlayers
       tags:
-        - pets
-      parameters:
-        - name: petId
-          in: path
-          required: true
-          description: The id of the pet to retrieve
-          schema:
-            type: string
+        - Players
       responses:
         '200':
-          description: Expected response to a valid request
+          description: OK
+  /sponsorships:
+    post:
+      summary: Record new sponsorship
+      operationId: addSponsorship
+      tags:
+        - Sponsorships
+      responses:
+        '201':
+          description: Registers new sponsorship in memory
           content:
-            application/json:
+            application/json:    
               schema:
-                $ref: "#/components/schemas/Player"
+                $ref: "#/components/schemas/Sponsorship"
         default:
           description: unexpected error
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Error"
+                $ref: "#/components/schemas/Sponsorship"
 components:
   schemas:
     Player:
@@ -102,6 +98,27 @@ components:
            type: boolean
         canBorrow:
            type: boolean
+    Sponsorship:
+      type: object
+      required:
+        - creditorId
+        - recepientId
+        - amount
+      properties:
+        id:
+          type: integer
+          format: int64
+        creditorId:
+          type: integer
+          format: int64
+        recepientId:
+          type: integer
+          format: int64
+        amount:
+          type: number
+          format: double
+        isPaidOff:
+           type: boolean
     Players:
       type: array
       items:
@@ -116,16 +133,4 @@ components:
           type: integer
           format: int32
         message:
-          type: string</con:content>
-      <con:type>https://swagger.io/openapiv3/specification</con:type>
-    </con:part>
-  </con:definitionCache>
-  <con:endpoints>
-    <con:endpoint>https://lively-wildflower-6281.getsandbox.com/</con:endpoint>
-  </con:endpoints>
-  <con:environmentSpec>
-    <con:entry environmentId="24dae39e-582c-405d-8775-d9c9ccd0265a">
-      <con:authProfile>Inherit From Parent</con:authProfile>
-    </con:entry>
-  </con:environmentSpec>
-</con:interface>
+          type: string
